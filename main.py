@@ -1,2 +1,9 @@
+from core.deck import build_standard_deck, shuffle_by_suit
+from core.player_io import run_full_game
+
 if __name__ == "__main__":
-    pass
+    deck = build_standard_deck()
+    shuffle_by_suit(deck)
+    player = {"hand": []}
+    dealer = {"hand": []}
+    run_full_game(deck, player, dealer)
