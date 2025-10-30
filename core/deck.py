@@ -12,15 +12,3 @@ def build_standard_deck() -> list[dict]:
 
 def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
     pass
-
-# def shuffle(deck: list[dict]) -> list[dict]:
-#     shuffle_list = deck.copy()
-#     for i in range(1000):
-#         num1 = random.randrange(1, 52)
-#         num2 = random.randrange(1, 52)
-#         if num1 == num2:
-#             i -= 1
-#             continue
-#         shuffle_list[num1], shuffle_list[num2] = shuffle_list[num2], shuffle_list[num1]
-#
-#     return shuffle_list

@@ -3,7 +3,8 @@ def calculate_hand_value(hand: list[dict]) -> int:
                      'K': 10}
     sum_of_hand: int = 0
     for card in hand:
-        sum_of_hand += value_of_card[card['rank']]
+        value = card['rank']
+        sum_of_hand += value_of_card[value]
     return sum_of_hand
 
 
@@ -13,8 +14,10 @@ def deal_two_each(deck: list[dict], player: dict, dealer: dict) -> None:
 
 
 def dealer_play(deck: list[dict], dealer: dict) -> bool:
-    while calculate_hand_value(dealer["hand"]) <= 17:
-        dealer["hand"] += deck.pop(0)
+    dealer_hand_value: int = calculate_hand_value(dealer["hand"])
+    while dealer_hand_value <= 17:
+        dealer["hand"].append(deck.pop(0))
+        dealer_hand_value: int = calculate_hand_value(dealer["hand"])
     if 17 <= calculate_hand_value(dealer["hand"]) <= 21:
         return True
     return False
