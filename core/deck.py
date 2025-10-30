@@ -23,6 +23,7 @@ def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
         deck[index2] = temp
     return deck
 
+
 def check_by_suit(deck: list[dict], index1: int) -> int:
     index2: int = random.randrange(1, 52)
     card1: dict = deck[index1]
