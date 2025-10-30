@@ -1,9 +1,12 @@
+import os
+
 from core.game_logic import deal_two_each, calculate_hand_value, dealer_play
 
 
 def ask_player_action() -> str:
     while True:
         user_input: str = input(f"\nPress 'S' for STAND, 'H' for HIT: ").upper()
+        os.system('cls')
         if user_input in ["S", "H"] and len(user_input) == 1:
             return user_input
         else:
@@ -13,6 +16,7 @@ def ask_player_action() -> str:
 def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
     deal_two_each(deck, player, dealer)
     player_hand_value: int = calculate_hand_value(player["hand"])
+    os.system('cls')
     print(f"Welcome to Blackjack!!!\n"
           f"The values of your cards are: {player_hand_value}")
     user_input: str = ask_player_action()
@@ -38,7 +42,7 @@ def s_input(deck: list[dict], dealer: dict, player: dict) -> None:
     if dealer_all_in:
         player_hand_value: int = calculate_hand_value(player["hand"])
         dealer_hand_value: int = calculate_hand_value(dealer["hand"])
-        print(f"Player's card value: {player_hand_value}\n"
+        print(f"\nPlayer's card value: {player_hand_value}\n"
               f"Dealer's card value: {dealer_hand_value}\n")
         if player_hand_value > dealer_hand_value:
             print("The player won!!!")
