@@ -16,27 +16,34 @@ def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
     print(f"Welcome to Blackjack!!!\n"
           f"The values of your cards are: {player_hand_value}")
     user_input: str = ask_player_action()
-
     while user_input == 'H':
-        player["hand"].append(deck.pop(0))
-        player_hand_value: int = calculate_hand_value(player["hand"])
-        print(f"The values of your cards are: {player_hand_value}")
-        if player_hand_value > 21:
-            print("Yuor hand value too high.\nGame Over..")
-            break
-        user_input: str = ask_player_action()
-
+        user_input = h_input(deck, player)
     if user_input == 'S':
-        dealer_all_in: bool = dealer_play(deck, dealer)
-        if dealer_all_in:
-            player_hand_value: int = calculate_hand_value(player["hand"])
-            dealer_hand_value: int = calculate_hand_value(dealer["hand"])
-            print(f"Player's card value: {player_hand_value}\n"
-                  f"Dealer's card value: {dealer_hand_value}\n")
-            if player_hand_value > dealer_hand_value:
-                print("The player won!!!")
-            if player_hand_value < dealer_hand_value:
-                print("The dealer won!!!")
-            if player_hand_value == dealer_hand_value:
-                print(f"Draw!!!\n"
-                      f"Player and dealer win")
+        s_input(deck, dealer, player)
+
+
+def h_input(deck: list[dict], player: dict) -> str:
+    player["hand"].append(deck.pop(0))
+    player_hand_value: int = calculate_hand_value(player["hand"])
+    print(f"The values of your cards are: {player_hand_value}")
+    if player_hand_value > 21:
+        print("Yuor hand value too high.\nGame Over..")
+        return ""
+    user_input: str = ask_player_action()
+    return user_input
+
+
+def s_input(deck: list[dict], dealer: dict, player: dict) -> None:
+    dealer_all_in: bool = dealer_play(deck, dealer)
+    if dealer_all_in:
+        player_hand_value: int = calculate_hand_value(player["hand"])
+        dealer_hand_value: int = calculate_hand_value(dealer["hand"])
+        print(f"Player's card value: {player_hand_value}\n"
+              f"Dealer's card value: {dealer_hand_value}\n")
+        if player_hand_value > dealer_hand_value:
+            print("The player won!!!")
+        if player_hand_value < dealer_hand_value:
+            print("The dealer won!!!")
+        if player_hand_value == dealer_hand_value:
+            print(f"Draw!!!\n"
+                  f"Player and dealer win")
